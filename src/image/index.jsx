@@ -45,7 +45,7 @@ function ImageList() {
           placeItems: "center",
         }}
       >
-        <div
+        <button
           style={{
             borderRadius: "50%",
             width: "50px",
@@ -55,10 +55,10 @@ function ImageList() {
             alignItems: "center",
             justifyContent: "center",
           }}
+          onClick={handlePrevButton}
         >
           <FontAwesomeIcon
             icon={faArrowLeft}
-            onClick={handlePrevButton}
             style={{
               justifyContent: "center",
               width: "40px",
@@ -67,7 +67,7 @@ function ImageList() {
               borderRadius: "50%",
             }}
           />
-        </div>
+        </button>
         <img
           src={imageListData[imageIndex].url}
           alt={imageListData[imageIndex].alt}
@@ -78,7 +78,7 @@ function ImageList() {
             margin: "40px",
           }}
         />
-        <div
+        <button
           style={{
             borderRadius: "50%",
             width: "50px",
@@ -88,10 +88,10 @@ function ImageList() {
             alignItems: "center", // Căn giữa theo chiều dọc
             justifyContent: "center",
           }}
+          onClick={handleNextButton}
         >
           <FontAwesomeIcon
             icon={faArrowRightLong}
-            onClick={handleNextButton}
             style={{
               color: "#4898c0",
               width: "40px",
@@ -99,7 +99,7 @@ function ImageList() {
               borderRadius: "50%",
             }}
           />
-        </div>
+        </button>
       </div>
       <div
         style={{
