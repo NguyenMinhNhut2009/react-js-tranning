@@ -45,8 +45,8 @@ function HomePage() {
       [id]: true,
     }));
   };
-  const handleClose = (id, item) => {
-    console.log(`log data; ${item}`);
+  const handleClose = (id) => {
+
     // Đóng popup chỉnh sửa cho mục có id tương ứng
     setOpen((prevOpenPopup) => ({
       ...prevOpenPopup,
@@ -110,7 +110,7 @@ function HomePage() {
               </button>
               <FormPopup
                 open={open[item.id] || false}
-                handleClose={() => handleClose(item.id, item)}
+                handleClose={() => handleClose(item.id)}
                 formData={item}
               />
             </div>
