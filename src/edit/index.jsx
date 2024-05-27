@@ -2,7 +2,7 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
+// import { useMutation } from "react-query";
 import {
   Dialog,
   DialogActions,
@@ -12,7 +12,7 @@ import {
   Button,
 } from "@mui/material";
 
-const FormPopup = ({ open, handleClose, formData }) => {
+const FormPopup = ({ open, handleClose, formData, handleSuccess }) => {
   const {
     register,
     handleSubmit,
@@ -27,12 +27,10 @@ const FormPopup = ({ open, handleClose, formData }) => {
     }
   }, [formData, setValue]);
 
-  const mutation = useMutation((data) => {
-    console.log(data);
-  });
+  console.log(`log data ${handleSuccess}`);
 
   const onSubmit = (dataNew) => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${dataNew.field3}`, {
+    fetch(`https://jsonplaceholder.typicode.com/posts/${formData.id}`, {
       method: "PUT",
       body: JSON.stringify({
         id: formData.id,
@@ -56,7 +54,12 @@ const FormPopup = ({ open, handleClose, formData }) => {
       })
       .then((json) => {
         console.log("Id is Edit API call successful:", json);
-        mutation.mutate(dataNew);
+        if (typeof handleSuccess === "function") {
+          // Kiểm tra xem handleSuccess có phải là một hàm không
+          handleSuccess(json); // Gọi hàm handleSuccess với dữ liệu đã chỉnh sửa
+        } else {
+          console.error("handleSuccess is not a function");
+        }
         handleClose();
       })
       .catch((error) => {
@@ -107,6 +110,7 @@ const FormPopup = ({ open, handleClose, formData }) => {
 FormPopup.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  formData1: PropTypes.object.isRequired,
+  formData: PropTypes.object.isRequired,
+  handleSuccess: PropTypes.func.isRequired,
 };
 export default FormPopup;

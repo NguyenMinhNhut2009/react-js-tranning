@@ -10,8 +10,7 @@ const queryClient = new QueryClient();
 function HomePage() {
   const [data, setData] = useState([]);
   const [open, setOpen] = useState({});
-  //   const [isEditing, setIsEditing] = useState(false);
-  //   const [currentItem, setCurrentItem] = useState(null);
+  const [editItem, setEditItem] = useState(null);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/posts")
@@ -44,9 +43,9 @@ function HomePage() {
       ...prevOpenPopup,
       [id]: true,
     }));
+    setEditItem(data.find((item) => item.id === id));
   };
   const handleClose = (id) => {
-
     // Đóng popup chỉnh sửa cho mục có id tương ứng
     setOpen((prevOpenPopup) => ({
       ...prevOpenPopup,
@@ -54,6 +53,12 @@ function HomePage() {
     }));
   };
 
+  const handleEditSuccess = (editedData) => {
+    const newData = data.map((item) =>
+      item.id === editedData.id ? editedData : item
+    );
+    setData(newData);
+  };
   return (
     <QueryClientProvider client={queryClient}>
       <div style={{ textAlign: "left" }}>
@@ -76,6 +81,7 @@ function HomePage() {
           <div key={item.id} style={{ display: "flex", flexDirection: "row" }}>
             <div
               style={{
+                flex: 1,
                 display: "flex",
                 flexDirection: "row",
                 marginTop: "15px",
@@ -111,7 +117,8 @@ function HomePage() {
               <FormPopup
                 open={open[item.id] || false}
                 handleClose={() => handleClose(item.id)}
-                formData={item}
+                formData={editItem}
+                handleSuccess={handleEditSuccess}
               />
             </div>
           </div>
