@@ -96,22 +96,35 @@ function Shopping() {
               </h2>
             </div>
             {product.quantity !== 0 ? (
-              <div
+              <button
                 style={{
                   justifyItems: "start",
                   display: "flex",
                   alignItems: "flex-end",
                   justifyContent: "flex-end",
-                  color: "black",
+                  outline: "none",
+                  backgroundColor: "transparent",
+                  transition: "none",
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "black";
+                  e.currentTarget.style.border = "none";
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.backgroundColor = "transparent";
+                  e.currentTarget.style.color = "black";
+                  e.currentTarget.style.border = "none";
                 }}
               >
                 <FontAwesomeIcon
                   icon={faPlus}
+                  color="black"
                   size="2x"
                   style={{ marginLeft: "20px", cursor: "pointer" }}
                   onClick={() => addToCart(product)}
                 />
-              </div>
+              </button>
             ) : null}
           </div>
         ))}
