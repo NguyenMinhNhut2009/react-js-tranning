@@ -70,7 +70,6 @@ function ImageList() {
         </button>
         <img
           src={imageListData[imageIndex].url}
-          alt={imageListData[imageIndex].alt}
           style={{
             width: "800px",
             height: "700px",
@@ -84,8 +83,8 @@ function ImageList() {
             width: "50px",
             height: "50px",
             backgroundColor: "#90c0da",
-            display: "flex", // Sử dụng Flexbox
-            alignItems: "center", // Căn giữa theo chiều dọc
+            display: "flex",
+            alignItems: "center",
             justifyContent: "center",
           }}
           onClick={handleNextButton}
@@ -113,25 +112,7 @@ function ImageList() {
           marginLeft: "auto",
           marginRight: "auto",
         }}
-      >
-        {/* <div style={{ display: "flex" }}>
-          {imageListData.map((image, index) => (
-            <img
-              key={image.id}
-              src={image.url}
-              alt={image.alt}
-              style={{
-                height: "200px",
-                width: "150px",
-                borderRadius: "16px",
-                marginRight: "10px",
-                filter: imageIndex === index ? "grayscale(100%)" : "none",
-              }}
-              onClick={() => handleImageClick(index)}
-            />
-          ))}
-        </div> */}
-      </div>
+      ></div>
     </div>
   );
 }
