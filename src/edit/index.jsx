@@ -2,7 +2,6 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-// import { useMutation } from "react-query";
 import {
   Dialog,
   DialogActions,
@@ -72,7 +71,6 @@ const FormPopup = ({ open, handleClose, formData, handleSuccess }) => {
       open={open}
       onClose={handleClose}
       BackdropProps={{ style: { backgroundColor: "transparent" } }}
-      // PaperProps={{ style: { backgroundColor: "white", padding: "20px" } }}
     >
       <DialogTitle>Edit Post</DialogTitle>
       <DialogContent>

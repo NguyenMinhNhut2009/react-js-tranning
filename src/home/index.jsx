@@ -29,7 +29,9 @@ function HomePage() {
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
-        console.log("Post deleted successfully");
+        if (response.status === 200) {
+          setData((prevData) => prevData.filter((item) => item.id !== id));
+        }
       })
       .catch((error) => {
         console.error("Error deleting post:", error);
@@ -46,7 +48,6 @@ function HomePage() {
     setEditItem(data.find((item) => item.id === id));
   };
   const handleClose = (id) => {
-    // Đóng popup chỉnh sửa cho mục có id tương ứng
     setOpen((prevOpenPopup) => ({
       ...prevOpenPopup,
       [id]: false,
